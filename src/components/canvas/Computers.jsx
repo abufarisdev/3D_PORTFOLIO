@@ -2,7 +2,9 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
-import CanvasLoader from '../Loader';
+
+import CanvasLoader from '../Loader';           // ✅ safe inside <Canvas>
+import FullscreenLoader from '../FullscreenLoader'; // ✅ external loading screen
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF('/desktop_pc/scene.gltf');
@@ -31,6 +33,7 @@ const Computers = ({ isMobile }) => {
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 500px)');
@@ -41,35 +44,44 @@ const ComputersCanvas = () => {
     };
 
     mediaQuery.addEventListener('change', handleMediaQueryChange);
-    return () => mediaQuery.removeEventListener('change', handleMediaQueryChange);
+
+    // Hide loader after a delay (adjust if model is larger)
+    const timer = setTimeout(() => setShowLoader(false), 2500);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
-    // DO NOT use pointer-events-none on this wrapper!
-    <div className="absolute inset-0 w-full h-full z-[10]">
-      <Canvas
-        frameloop="demand"
-        shadows
-        dpr={[1, 2]}
-        camera={{ position: [20, 3, 5], fov: 25 }}
-        gl={{ preserveDrawingBuffer: true, alpha: true }}
-        style={{ background: 'transparent' }}
-        onCreated={({ gl }) => {
-          gl.setClearColor(new THREE.Color(0x000000), 0); // transparent background
-        }}
-      >
-        <Suspense fallback={<CanvasLoader />}>
-          <OrbitControls
-            enableZoom={false}
-            enableRotate={true}
-            maxPolarAngle={Math.PI / 2}
-            minPolarAngle={Math.PI / 2}
-          />
-          <Computers isMobile={isMobile} />
-        </Suspense>
-        <Preload all />
-      </Canvas>
-    </div>
+    <>
+      {showLoader && <FullscreenLoader />}
+      <div className="absolute inset-0 w-full h-full z-[10]">
+        <Canvas
+          frameloop="demand"
+          shadows
+          dpr={[1, 2]}
+          camera={{ position: [20, 3, 5], fov: 25 }}
+          gl={{ preserveDrawingBuffer: true, alpha: true }}
+          style={{ background: 'transparent' }}
+          onCreated={({ gl }) => {
+            gl.setClearColor(new THREE.Color(0x000000), 0);
+          }}
+        >
+          <Suspense fallback={<CanvasLoader />}>
+            <OrbitControls
+              enableZoom={false}
+              enableRotate={true}
+              maxPolarAngle={Math.PI / 2}
+              minPolarAngle={Math.PI / 2}
+            />
+            <Computers isMobile={isMobile} />
+          </Suspense>
+          <Preload all />
+        </Canvas>
+      </div>
+    </>
   );
 };
 
