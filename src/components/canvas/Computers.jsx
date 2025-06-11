@@ -2,9 +2,8 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
-
-import CanvasLoader from '../Loader';           // ✅ safe inside <Canvas>
-import FullscreenLoader from '../FullscreenLoader'; // ✅ external loading screen
+import CanvasLoader from '../Loader';
+import FullscreenLoader from "../FullscreenLoader";
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF('/desktop_pc/scene.gltf');
@@ -34,6 +33,7 @@ const Computers = ({ isMobile }) => {
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
+  const [shouldRenderCanvas, setShouldRenderCanvas] = useState(true);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 500px)');
@@ -45,14 +45,32 @@ const ComputersCanvas = () => {
 
     mediaQuery.addEventListener('change', handleMediaQueryChange);
 
-    // Hide loader after a delay (adjust if model is larger)
-    const timer = setTimeout(() => setShowLoader(false), 2500);
+    // Show loader initially
+    const loaderTimeout = setTimeout(() => {
+      setShowLoader(false);
+    }, 3000);
+
+    // Fail-safe timeout for mobile crash
+    const crashTimeout = setTimeout(() => {
+      if (isMobile) {
+        setShouldRenderCanvas(false);
+      }
+    }, 4000);
 
     return () => {
       mediaQuery.removeEventListener('change', handleMediaQueryChange);
-      clearTimeout(timer);
+      clearTimeout(loaderTimeout);
+      clearTimeout(crashTimeout);
     };
-  }, []);
+  }, [isMobile]);
+
+  if (!shouldRenderCanvas && isMobile) {
+    return (
+      <div className="w-full h-[350px] bg-black flex items-center justify-center text-white z-10">
+        <p className="text-lg">3D Model disabled on mobile</p>
+      </div>
+    );
+  }
 
   return (
     <>
