@@ -3,7 +3,7 @@ import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
 import { FaGithub, FaLinkedin, FaFileDownload } from "react-icons/fa";
 
-const Hero = () => {
+const Hero = ({ device }) => {
   return (
     <section className="relative w-full h-screen mx-auto">
       {/* Clickable Icons Container - Placed ABOVE the canvas */}
@@ -24,14 +24,14 @@ const Hero = () => {
               I develop 3D visuals, user <br className="sm:block hidden" />
               interfaces and web applications
             </p>
-            
+
             {/* Icons with pointer-events-auto */}
             <motion.div 
               className="flex gap-4 mt-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
-              style={{ pointerEvents: 'auto' }} // 👈 Allows clicks
+              style={{ pointerEvents: 'auto' }}
             >
               <motion.a 
                 href="https://linkedin.com/in/abufaris" 
@@ -43,7 +43,7 @@ const Hero = () => {
               >
                 <FaLinkedin />
               </motion.a>
-              
+
               <motion.a 
                 href="/resume.docx" 
                 target="_blank"
@@ -52,28 +52,34 @@ const Hero = () => {
                 whileTap={{ scale: 0.9 }}
                 className="text-white text-2xl hover:text-[#915EFF] transition-colors block"
               >
-                
                 <FaFileDownload />
               </motion.a>
+
               <motion.a 
-        href="https://github.com/abufarisdev" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className="text-white text-2xl hover:text-[#915EFF] transition-colors block"
-      >
-        <FaGithub/>
-        </motion.a>
+                href="https://github.com/abufarisdev" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="text-white text-2xl hover:text-[#915EFF] transition-colors block"
+              >
+                <FaGithub />
+              </motion.a>
             </motion.div>
           </div>
         </div>
       </div>
 
-      {/* 3D Model - BELOW icons but still interactive */}
-      <ComputersCanvas />
+      {/* 3D Model or fallback */}
+      {device !== "mobile" ? (
+        <ComputersCanvas />
+      ) : (
+        <div className="w-full h-[350px] bg-black flex items-center justify-center text-white z-10">
+          <p className="text-lg">3D Model disabled on mobile</p>
+        </div>
+      )}
 
-      {/* Scroll indicator - stays at z-10 */}
+      {/* Scroll indicator */}
       <div className="absolute xs:bottom-20 bottom-48 w-full flex justify-center items-center z-10">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">

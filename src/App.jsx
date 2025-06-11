@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import {
@@ -10,20 +11,37 @@ import {
   Tech,
   Works,
   StarsCanvas,
-  Education, // ✅ import the new component
+  Education,
 } from './components';
 
 const App = () => {
+  const [device, setDevice] = useState('desktop');
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    setDevice(mediaQuery.matches ? 'mobile' : 'desktop');
+
+    const handleResize = (e) => {
+      setDevice(e.matches ? 'mobile' : 'desktop');
+    };
+
+    mediaQuery.addEventListener('change', handleResize);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleResize);
+    };
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="relative z-0 bg-primary">
         <Navbar />
         <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center pt-20">
-          <Hero />
+          <Hero device={device} /> {/* ✅ Pass device prop */}
         </div>
 
         <About />
-        <Education /> {/* ✅ inserted here */}
+        <Education />
         <Experience />
         <Tech />
         <Works />
@@ -38,4 +56,5 @@ const App = () => {
 };
 
 export default App;
+
 
