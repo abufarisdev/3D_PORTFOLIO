@@ -30,6 +30,8 @@
 import sakshamImg from '../assets/saksham.jpeg'; // adjust path if file is in another folder
 import anubhavImg from '../assets/anubhav.jpeg';
 import adityaImg from '../assets/aditya.jpg';
+import social from "../assets/social.jpeg"; // ✅ Required if using a local image
+
 
 export const navLinks = [
   {
@@ -144,6 +146,20 @@ const experiences = [
        "Exploring open source and developer tools through GDG resources.",
     ],
   },
+
+  {
+  title: "Open Source Contributor",
+  company_name: "Social Summer of Code 2025",
+  icon: social, 
+  iconBg: "#000000", 
+  date: "June 2025 - Present",
+  points: [
+    "Contributing to beginner-friendly open source projects.",
+    "Working on automation tools like birthday greeting bots and AI resume platforms.",
+    "Learning and applying real-world Git, GitHub, and collaborative workflows.",
+  ],
+},
+
 
 ];
 
