@@ -31,7 +31,7 @@ import sakshamImg from '../assets/saksham.jpeg'; // adjust path if file is in an
 import anubhavImg from '../assets/anubhav.jpeg';
 import adityaImg from '../assets/aditya.jpg';
 import social from "../assets/social.jpeg"; // ✅ Required if using a local image
-
+import gssoc from "../assets/gssoc.jpg"
 
 export const navLinks = [
   {
@@ -135,15 +135,15 @@ import { title } from "framer-motion/client";
 
 const experiences = [
   {
-    title: "Student Member",
-    company_name: "GDG Kolkata",
-    icon: gdg,
+    title: "Campus Ambassador",
+    company_name: "GirlScript Summer of Code 2025",
+    icon: gssoc,
     iconBg: "#ffffff",
-    date: "November 2024 - Present",
+    date: "June 2025 - Present",
     points: [
-       "Attended DevFest Kolkata 2024 and other GDG-hosted tech events.",
-       "Learning about web, ML, and Google Cloud through community-led sessions.",
-       "Exploring open source and developer tools through GDG resources.",
+       "Promoting open-source culture on my campus",
+       "Helping fellow students get started with Git, GitHub, and open-source contributions",
+       "Representing my college in this nationwide initiative",
     ],
   },
 
@@ -159,6 +159,19 @@ const experiences = [
     "Learning and applying real-world Git, GitHub, and collaborative workflows.",
   ],
 },
+
+{
+    title: "Student Member",
+    company_name: "GDG Kolkata",
+    icon: gdg,
+    iconBg: "#ffffff",
+    date: "November 2024 - Present",
+    points: [
+       "Attended DevFest Kolkata 2024 and other GDG-hosted tech events.",
+       "Learning about web, ML, and Google Cloud through community-led sessions.",
+       "Exploring open source and developer tools through GDG resources.",
+    ],
+  },
 
 
 ];
