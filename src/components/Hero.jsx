@@ -49,7 +49,7 @@ const Hero = ({ device }) => {
                   <motion.a href="https://linkedin.com/in/abufaris" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="text-white text-2xl hover:text-[#915EFF] transition-colors block">
                     <FaLinkedin />
                   </motion.a>
-                  <motion.a href="/resume.docx" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="text-white text-2xl hover:text-[#915EFF] transition-colors block">
+                  <motion.a href="https://drive.google.com/file/d/1r3Fr6Ua7ufFG1awIj9deJci4eyp7uZJn/view?usp=drive_linksume.docx" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="text-white text-2xl hover:text-[#915EFF] transition-colors block">
                     <FaFileDownload />
                   </motion.a>
                   <motion.a href="https://github.com/abufarisdev" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="text-white text-2xl hover:text-[#915EFF] transition-colors block">
