@@ -132,8 +132,21 @@ const technologies = [
 ];
 import gdg from '../assets/gdg.png'; // adjust the path if needed
 import { title } from "framer-motion/client";
+import crypton from '../assets/crypton.png'
 
 const experiences = [
+    {
+  title: "Open Source Contributor",
+  company_name: "GirlScript Summer of Code 2025",
+  icon: gssoc, 
+  iconBg: "#ffffff", 
+  date: "July 2025 - Present",
+  points: [
+    "Contributing to beginner-friendly open source projects.",
+    "Working on automation tools like birthday greeting bots and AI resume platforms.",
+    "Learning and applying real-world Git, GitHub, and collaborative workflows.",
+  ],
+},
   {
     title: "Campus Ambassador",
     company_name: "GirlScript Summer of Code 2025",
@@ -206,26 +219,32 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "Crypto Dashboard",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "A React-based cryptocurrency tracking dashboard with live data from the CoinGecko API. Includes charts, responsive UI, and real-time market updates for multiple coins.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "axios",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "chartjs",
         color: "pink-text-gradient",
       },
+      {
+        name: "materialui",
+        color: "orange-text-gradient",
+      },
     ],
-    image: carrent,
-    source_code_link: "https://github.com/",
+    image: crypton, 
+    source_code_link: "https://github.com/abufarisdev/crypton",
+    live_link: "https://crypton-wheat.vercel.app", 
   },
+
   {
     name: "Job IT",
     description:

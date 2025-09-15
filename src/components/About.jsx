@@ -46,7 +46,7 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
-        👋 Hey, I’m Abu Faris! A curious mind diving deep into the world of tech — currently pursuing B.Tech in Computer Science. I love building cool stuff on the web, tinkering with code, and learning one bug at a time.
+        👋 Hey, I’m Abu Faris ! A curious mind diving deep into the world of tech — currently pursuing B.Tech in Computer Science. I love building cool stuff on the web, tinkering with code, and learning one bug at a time.
         Always up for a challenge, a hackathon, or a late-night open-source sprint.
         Right now, I’m learning JavaScript, React, and exploring the 3D side of things with Three.js — and yep, I’m just getting started.
         Let’s connect and create something impactful together!
