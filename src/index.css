@@ -181,3 +181,36 @@
     opacity: 1;
   }
 }
+/* === Dark Theme Base === */
+body {
+  background-color: #0d0d0d; /* almost black */
+  color: #e5e5e5; /* light grey text */
+}
+
+/* Section containers */
+.section-dark {
+  background-color: #1a1a1a; /* slightly lighter for contrast */
+  border-radius: 0.75rem; /* optional: rounded look */
+  padding: 1.5rem;
+}
+
+/* Accent buttons/links */
+.btn-accent {
+  background-color: #6366f1; /* indigo */
+  color: #0d0d0d;
+  transition: all 0.3s ease-in-out;
+}
+.btn-accent:hover {
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+/* Replace black-gradient with smoother grey-black */
+.black-gradient {
+  background: linear-gradient(to right, #1a1a1a, #0d0d0d);
+}
+
+/* Muted text for secondary info */
+.text-muted {
+  color: #a3a3a3;
+}
